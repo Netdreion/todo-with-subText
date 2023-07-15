@@ -1,0 +1,50 @@
+import { useState } from "react";
+const Display = ({
+  handleChange,
+  handleClick,
+  handleDelete,
+  taskList,
+  task,
+}) => {
+  const [subText, setSubText] = useState("");
+  const [subTextList, setsubTextList] = useState([]);
+
+  const addsubText = (event) => {
+    setSubText(event.target.value);
+  };
+
+  const addsubTextList = () => {
+    setsubTextList([...subTextList, subText]);
+  };
+  return (
+    <div>
+      <input value={task} onChange={handleChange} />
+      <button onClick={handleClick}>Add</button>
+      <div>
+        <ul>
+          {taskList.map((todo) => {
+            return (
+              <li key={task}>
+                {todo}
+                <button onClick={() => handleDelete(todo)}>Delete</button>
+                <input
+                  onChange={() => addsubText(event)}
+                  placeholder="subtext"
+                />
+                <button onClick={() => addsubTextList()}>add</button>
+                <div>
+                  <ul>
+                    {subTextList.map((subtask) => {
+                      return <li key={task}>{subText}</li>;
+                    })}
+                  </ul>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+};
+export default Display;
