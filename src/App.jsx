@@ -5,8 +5,6 @@ import "./App.css";
 function App() {
   const [task, setTask] = useState("");
   const [taskList, setTaskList] = useState([]);
-  const [subText, setSubText] = useState("");
-  const [subTextlist, setsubTextList] = useState([]);
 
   const handleChange = (event) => {
     setTask(event.target.value);
@@ -14,17 +12,9 @@ function App() {
   const handleClick = () => {
     setTaskList([...taskList, task]);
   };
-  const handleDelete = (thing) => {
-    const deletedaList = taskList.filter((vez) => vez !== thing);
+  const handleDelete = (todo) => {
+    const deletedaList = taskList.filter((item) => item !== todo);
     setTaskList(deletedaList);
-  };
-
-  const addsubText = (event) => {
-    setSubText(event.target.value);
-  };
-
-  const addsubTextList = () => {
-    setsubTextList([...subTextlist, subText]);
   };
 
   return (
@@ -35,9 +25,6 @@ function App() {
         handleDelete={handleDelete}
         taskList={taskList}
         task={task}
-        addsubText={addsubText}
-        addsubTextList={addsubTextList}
-        subTextlist={subTextlist}
       />
     </div>
   );

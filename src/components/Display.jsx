@@ -7,15 +7,16 @@ const Display = ({
   task,
 }) => {
   const [subText, setSubText] = useState("");
-  const [subTextList, setsubTextList] = useState([]);
+  const [subTextList, setSubTextList] = useState([]);
 
   const addsubText = (event) => {
     setSubText(event.target.value);
   };
 
   const addsubTextList = () => {
-    setsubTextList([...subTextList, subText]);
+    setSubTextList([...subTextList, subText]);
   };
+
   return (
     <div>
       <input value={task} onChange={handleChange} />
@@ -34,7 +35,7 @@ const Display = ({
                 <button onClick={() => addsubTextList()}>add</button>
                 <div>
                   <ul>
-                    {subTextList.map((subtask) => {
+                    {subTextList.map((task) => {
                       return <li key={task}>{subText}</li>;
                     })}
                   </ul>
