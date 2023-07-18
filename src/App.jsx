@@ -11,8 +11,8 @@ const App = () => {
 
   const handleClick = () => {
     if (task.trim() !== "") {
-      setTaskList([...taskList, { task: task, subTextList: [] }]);
       setTask("");
+      setTaskList([...taskList, { task: task, subTextList: [] }]);
     }
   };
 
@@ -46,6 +46,7 @@ const App = () => {
         handleSubTextChange={handleSubTextChange}
         handleSubTextAdd={handleSubTextAdd}
         taskList={taskList}
+        task={task}
       />
     </div>
   );
