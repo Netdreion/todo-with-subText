@@ -1,42 +1,35 @@
 import { useState } from "react";
+
 const Display = ({
   handleChange,
   handleClick,
   handleDelete,
+  handleSubTextChange,
+  handleSubTextAdd,
   taskList,
   task,
 }) => {
-  const [subText, setSubText] = useState("");
-  const [subTextList, setSubTextList] = useState([]);
-
-  const addsubText = (event) => {
-    setSubText(event.target.value);
-  };
-
-  const addsubTextList = () => {
-    setSubTextList([...subTextList, subText]);
-  };
-
   return (
     <div>
       <input value={task} onChange={handleChange} />
       <button onClick={handleClick}>Add</button>
       <div>
         <ul>
-          {taskList.map((todo) => {
+          {taskList.map((todo, index) => {
             return (
-              <li key={task}>
-                {todo}
-                <button onClick={() => handleDelete(todo)}>Delete</button>
+              <li key={index}>
+                {todo.task}
+                <button onClick={() => handleDelete(todo.task)}>Delete</button>
                 <input
-                  onChange={() => addsubText(event)}
+                  value={todo.subText || ""}
+                  onChange={(event) => handleSubTextChange(index, event)}
                   placeholder="subtext"
                 />
-                <button onClick={() => addsubTextList()}>add</button>
+                <button onClick={() => handleSubTextAdd(index)}>add</button>
                 <div>
                   <ul>
-                    {subTextList.map((task) => {
-                      return <li key={task}>{subText}</li>;
+                    {todo.subTextList.map((subTask, subIndex) => {
+                      return <li key={subIndex}>{subTask}</li>;
                     })}
                   </ul>
                 </div>
@@ -48,4 +41,5 @@ const Display = ({
     </div>
   );
 };
+
 export default Display;
