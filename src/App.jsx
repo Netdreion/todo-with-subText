@@ -10,10 +10,8 @@ const App = () => {
   };
 
   const handleClick = () => {
-    if (task.trim() !== "") {
-      setTask("");
-      setTaskList([...taskList, { task: task, subTextList: [] }]);
-    }
+    setTaskList([...taskList, { task: task, subTextList: [] }]);
+    setTask("");
   };
 
   const handleDelete = (todo) => {
@@ -30,11 +28,17 @@ const App = () => {
   const handleSubTextAdd = (index) => {
     const updatedList = [...taskList];
     const subText = updatedList[index].subText;
-    if (subText && subText.trim() !== "") {
-      updatedList[index].subTextList.push(subText);
-      updatedList[index].subText = "";
-      setTaskList(updatedList);
-    }
+    updatedList[index].subTextList.push(subText);
+    updatedList[index].subText = "";
+    setTaskList(updatedList);
+  };
+
+  const handleSubDelete = (subTask, index) => {
+    const updatedList = [...taskList];
+    updatedList[subTask].subTextList = updatedList[subTask].subTextList.filter(
+      (_, item) => item.subTask !== index
+    );
+    setTaskList(updatedList);
   };
 
   return (
@@ -45,6 +49,7 @@ const App = () => {
         handleDelete={handleDelete}
         handleSubTextChange={handleSubTextChange}
         handleSubTextAdd={handleSubTextAdd}
+        handleSubDelete={handleSubDelete}
         taskList={taskList}
         task={task}
       />

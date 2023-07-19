@@ -6,6 +6,7 @@ const Display = ({
   handleDelete,
   handleSubTextChange,
   handleSubTextAdd,
+  handleSubDelete,
   taskList,
   task,
 }) => {
@@ -29,7 +30,14 @@ const Display = ({
                 <div>
                   <ul>
                     {todo.subTextList.map((subTask, subIndex) => {
-                      return <li key={subIndex}>{subTask}</li>;
+                      return (
+                        <li key={subIndex}>
+                          {subTask}
+                          <button onClick={() => handleSubDelete(index)}>
+                            delete
+                          </button>
+                        </li>
+                      );
                     })}
                   </ul>
                 </div>
